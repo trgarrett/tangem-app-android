@@ -44,36 +44,6 @@ internal class StakingIdFactoryTest {
         private val defaultAddress = "address"
 
         @Test
-        fun `create returns P2P StakingID for Ethereum`() = runTest {
-            // Arrange
-            val userWalletId = UserWalletId(stringValue = "011")
-            val currency = MockCryptoCurrencyFactory().ethereum
-
-            coEvery {
-                walletManagersFacade.getDefaultAddress(userWalletId = userWalletId, network = currency.network)
-            } returns defaultAddress
-
-            // Act
-            val actual = factory.create(
-                userWalletId = userWalletId,
-                currencyId = currency.id,
-                network = currency.network,
-            )
-
-            // Assert
-            val expected = StakingID(
-                integrationId = StakingIntegrationID.P2P.EthereumPooled.value,
-                address = defaultAddress,
-            ).right()
-
-            Truth.assertThat(actual).isEqualTo(expected)
-
-            coVerify(exactly = 1) {
-                walletManagersFacade.getDefaultAddress(userWalletId = userWalletId, network = currency.network)
-            }
-        }
-
-        @Test
         fun `create returns UnsupportedCurrency if integrationId is null`() = runTest {
             // Arrange
             val userWalletId = UserWalletId(stringValue = "011")

@@ -87,6 +87,12 @@ sealed interface StakingIntegrationID {
             /** Blockchain associated with Ethereum-based staking integrations. */
             override val blockchain: Blockchain = Blockchain.Ethereum
         }
+
+        companion object {
+            val entries: List<StakeKit> by lazy {
+                Coin.entries + EthereumToken.entries
+            }
+        }
     }
 
     /**
@@ -132,14 +138,6 @@ sealed interface StakingIntegrationID {
             StakeKit.Coin.entries + StakeKit.EthereumToken.entries + P2P.entries
         }
 
-        val stakeKitEntries: List<StakingIntegrationID.StakeKit> by lazy {
-            StakeKit.Coin.entries + StakeKit.EthereumToken.entries
-        }
-
-        val p2pEntries: List<P2P> by lazy {
-            P2P.entries
-        }
-
         /**
          * Creates a [StakingIntegrationID] for the given cryptocurrency ID
          *
@@ -173,11 +171,3 @@ val Network.isStakingSupported: Boolean
  */
 val Blockchain.isStakingSupported: Boolean
     get() = StakingIntegrationID.entries.any { it.blockchain == this }
-
-/**
- * Extension property to retrieve the staking integration ID for a blockchain.
- *
- * @return the [StakingIntegrationID] if available, or `null` if not supported.
- */
-val Blockchain.integrationId: StakingIntegrationID?
-    get() = StakingIntegrationID.entries.firstOrNull { it.blockchain == this }

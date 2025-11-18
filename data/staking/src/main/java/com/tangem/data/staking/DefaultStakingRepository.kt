@@ -172,7 +172,7 @@ internal class DefaultStakingRepository(
     }
 
     private fun getAvailableStakeKitIntegrationsIds(): List<StakingIntegrationID.StakeKit> {
-        return StakingIntegrationID.stakeKitEntries.filterNot {
+        return StakingIntegrationID.StakeKit.entries.filterNot {
             it.blockchain == Blockchain.Cardano && !stakingFeatureToggles.isCardanoStakingEnabled
         }
     }
