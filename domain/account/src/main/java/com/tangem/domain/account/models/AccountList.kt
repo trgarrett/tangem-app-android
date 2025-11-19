@@ -13,11 +13,11 @@ import com.tangem.utils.extensions.addOrReplace
 import kotlinx.serialization.Serializable
 
 /**
- * Represents a list of accounts associated with a user wallet
+ * Represents a list of accounts associated with a user wallet ID.
  *
  * @property userWalletId  the user wallet id associated with the account list
  * @property accounts      a list of accounts belonging to the user wallet
- * @property totalAccounts the total number of accounts
+ * @property totalAccounts the total number of accounts (including archived ones)
  * @property sortType      the sorting type applied to the accounts
  * @property groupType     the grouping type applied to the accounts
  *
@@ -88,6 +88,19 @@ data class AccountList private constructor(
     }
 
     /**
+     * Flattens the list of accounts to extract all crypto currencies contained within them.
+     *
+     * @return a list of all crypto currencies from all accounts
+     */
+    fun flattenCurrencies(): List<CryptoCurrency> {
+        return accounts.flatMap { account ->
+            when (account) {
+                is Account.CryptoPortfolio -> account.cryptoCurrencies
+            }
+        }
+    }
+
+    /**
      * Represents possible errors that can occur when creating an `AccountList`
      */
     @Serializable
@@ -129,6 +142,11 @@ data class AccountList private constructor(
         data object DuplicateAccountNames : Error {
             override fun toString(): String = "$tag: Account list contains duplicate account names"
         }
+
+        @Serializable
+        data object TotalAccountsLessThanActive : Error {
+            override fun toString(): String = "$tag: Total accounts cannot be less than active accounts"
+        }
     }
 
     companion object {
@@ -167,11 +185,15 @@ data class AccountList private constructor(
             val uniqueAccountIdsCount = accounts.map { it.accountId.value }.distinct().size
             ensure(accounts.size == uniqueAccountIdsCount) { Error.DuplicateAccountIds }
 
-            val customNames = accounts.mapNotNull { (it.accountName as? AccountName.Custom)?.value }
+            val customNames = accounts.map { (it.accountName as? AccountName.Custom)?.value }
             val uniqueCustomNameCount = customNames.distinct().size
 
             ensure(customNames.size == uniqueCustomNameCount) {
                 Error.DuplicateAccountNames
+            }
+
+            ensure(totalAccounts >= accounts.size) {
+                Error.TotalAccountsLessThanActive
             }
 
             AccountList(
