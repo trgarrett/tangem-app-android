@@ -149,6 +149,7 @@ sealed interface StakingIntegrationID {
             val blockchain = Blockchain.fromId(id = currencyId.rawNetworkId)
 
             return if (currencyId.contractAddress.isNullOrBlank()) {
+                // Order is not important — either P2P or Stakekit.Coin can be in any order
                 P2P.entries.firstOrNull { it.blockchain == blockchain }
                     ?: StakeKit.Coin.entries.firstOrNull { it.blockchain == blockchain }
             } else {
