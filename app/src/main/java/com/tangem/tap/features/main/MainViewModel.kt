@@ -32,8 +32,7 @@ import com.tangem.domain.quotes.multi.MultiQuoteUpdater
 import com.tangem.domain.settings.DeleteDeprecatedLogsUseCase
 import com.tangem.domain.settings.IncrementAppLaunchCounterUseCase
 import com.tangem.domain.settings.usercountry.FetchUserCountryUseCase
-import com.tangem.data.staking.FetchP2PEthPoolVaultsUseCase
-import com.tangem.domain.staking.FetchStakingTokensUseCase
+import com.tangem.domain.staking.FetchStakingOptionsUseCase
 import com.tangem.domain.wallets.usecase.AssociateWalletsWithApplicationIdUseCase
 import com.tangem.domain.wallets.usecase.GetSavedWalletsCountUseCase
 import com.tangem.domain.wallets.usecase.GetSelectedWalletUseCase
@@ -63,8 +62,7 @@ internal class MainViewModel @Inject constructor(
     private val incrementAppLaunchCounterUseCase: IncrementAppLaunchCounterUseCase,
     private val blockchainSDKFactory: BlockchainSDKFactory,
     private val dispatchers: CoroutineDispatcherProvider,
-    private val fetchStakingTokensUseCase: FetchStakingTokensUseCase,
-    private val fetchP2PEthPoolVaultsUseCase: FetchP2PEthPoolVaultsUseCase,
+    private val fetchStakingOptionsUseCase: FetchStakingOptionsUseCase,
     private val fetchUserCountryUseCase: FetchUserCountryUseCase,
     @GlobalUiMessageSender private val messageSender: UiMessageSender,
     private val keyboardValidator: KeyboardValidator,
@@ -106,9 +104,7 @@ internal class MainViewModel @Inject constructor(
 
             launch { fetchAppCurrenciesUseCase() }
 
-            launch { fetchStakingTokens() }
-
-            launch { fetchP2PEthPoolVaults() }
+            launch { fetchStakingOptions() }
 
             launch { initPushNotifications() }
         }
@@ -187,16 +183,10 @@ internal class MainViewModel @Inject constructor(
             }
     }
 
-    private suspend fun fetchStakingTokens() {
-        fetchStakingTokensUseCase()
-            .onLeft { Timber.e(it.toString(), "Unable to fetch the staking tokens list") }
-            .onRight { Timber.d("Staking token list was fetched successfully") }
-    }
-
-    private suspend fun fetchP2PEthPoolVaults() {
-        fetchP2PEthPoolVaultsUseCase()
-            .onLeft { Timber.e(it.toString(), "Unable to fetch P2P ETH Pool vaults") }
-            .onRight { Timber.d("P2P ETH Pool vaults were fetched successfully") }
+    private suspend fun fetchStakingOptions() {
+        fetchStakingOptionsUseCase()
+            .onLeft { Timber.e(it.toString(), "Unable to fetch staking options") }
+            .onRight { Timber.d("Staking options were fetched successfully") }
     }
 
     private fun initializeOffRamp() {

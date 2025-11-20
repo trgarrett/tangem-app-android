@@ -96,7 +96,7 @@ internal class DefaultStakingRepository(
     private val networkTypeAdapter by lazy { moshi.adapter(NetworkTypeDTO::class.java) }
     private val stakingActionStatusAdapter by lazy { moshi.adapter(StakingActionStatusDTO::class.java) }
 
-    override suspend fun fetchEnabledYields() {
+    override suspend fun fetchYields() {
         withContext(dispatchers.io) {
             val yieldsResponses = getAvailableStakeKitIntegrationsIds().map {
                 async { it.getYieldRequest() }
