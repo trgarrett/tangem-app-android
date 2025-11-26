@@ -9,7 +9,7 @@ import java.math.BigDecimal
 /**
  * tmp solution before facade implementation
  */
-object P2PYieldBalanceConverter {
+internal object P2PYieldBalanceConverter {
 
     private const val ETH_DECIMALS = 18
     private const val ETH_SYMBOL = "ETH"
