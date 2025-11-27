@@ -3,7 +3,6 @@
   <ManuallySuppressedIssues/>
   <CurrentIssues>
     <ID>BooleanPropertyNaming:YieldSupplyApyComponent.kt$YieldSupplyApyComponent$val state by loadingState.collectAsState()</ID>
-    <ID>BooleanPropertyNaming:YieldSupplyModel.kt$YieldSupplyModel$private val handleNavigation = params.handleNavigation</ID>
     <ID>BooleanPropertyNaming:YieldSupplyModel.kt$YieldSupplyModel$val processing = uiState.value is YieldSupplyUM.Processing</ID>
     <ID>BooleanPropertyNaming:YieldSupplyModel.kt$YieldSupplyModel$val showWarningIcon = !yieldSupplyStatus.isAllowedToSpend</ID>
     <ID>BooleanPropertyNaming:YieldSupplyUM.kt$YieldSupplyUM.Content$val showInfoIcon: Boolean</ID>

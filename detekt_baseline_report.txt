@@ -1,7 +1,7 @@
 ==========================================
 Detekt Baseline Updater & Issue Counter
 ==========================================
-Date: 2025-11-27 14:13:20
+Date: 2025-11-27 18:46:25
 
 Step 1: Running detekt to check for new issues...
 
@@ -17,13 +17,13 @@ Counting issues in baseline files...
 ==========================================
 
 Summary:
-  Total Issues: 1593
-  Modules with Issues: 68
-  Average Issues per Module: 23
+  Total Issues: 1574
+  Modules with Issues: 65
+  Average Issues per Module: 24
 
 Progress:
-  Fixed: 209 out of 1802 (11%)
-  Remaining: 1593
+  Fixed: 228 out of 1802 (12%)
+  Remaining: 1574
 
 ==========================================
 All Modules with Issues (sorted by count)
@@ -31,15 +31,15 @@ All Modules with Issues (sorted by count)
 
 Module                                                           Issues
 ────────────────────────────────────────────────────────────────
-features/wallet/impl                                                169
+features/wallet/impl                                                167
 features/markets/impl                                               155
 features/onboarding-v2/impl                                         131
 features/send-v2/impl                                                80
 features/swap/impl                                                   73
-features/hot-wallet/impl                                             57
 features/staking/impl                                                56
 data/wallet-connect                                                  55
 features/swap-v2/impl                                                53
+features/hot-wallet/impl                                             53
 features/walletconnect/impl                                          51
 features/tokendetails/impl                                           49
 features/manage-tokens/impl                                          45
@@ -49,8 +49,8 @@ features/tester/impl                                                 31
 domain/tokens                                                        28
 features/swap/domain                                                 27
 core/ui                                                              27
-features/yield-supply/impl                                           26
 common/ui                                                            26
+features/yield-supply/impl                                           25
 data/visa                                                            23
 features/tangempay/details/impl                                      22
 data/nft                                                             20
@@ -69,7 +69,6 @@ data/markets                                                         10
 domain/staking                                                        9
 data/yield-supply                                                     9
 data/networks                                                         9
-features/welcome/impl                                                 8
 features/home/impl                                                    8
 domain/transaction                                                    8
 libs/tangem-sdk-api                                                   7
@@ -77,6 +76,7 @@ features/onramp/impl                                                  7
 data/txhistory                                                        7
 data/tokens                                                           7
 data/account                                                          7
+features/welcome/impl                                                 6
 features/send-v2/api                                                  6
 domain/markets                                                        6
 data/wallet-manager                                                   6
@@ -94,9 +94,6 @@ features/txhistory/impl                                               3
 features/tangempay/onboarding/impl                                    3
 features/create-wallet-start/impl                                     3
 domain/manage-tokens                                                  3
-domain/demo/models                                                    3
-domain/card                                                           3
-data/feedback                                                         3
 common/routing                                                        3
-features/yield-supply/api                                             2
+data/feedback                                                         1
 ────────────────────────────────────────────────────────────────

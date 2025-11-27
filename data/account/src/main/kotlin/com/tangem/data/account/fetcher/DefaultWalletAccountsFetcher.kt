@@ -222,9 +222,9 @@ internal class DefaultWalletAccountsFetcher @Inject constructor(
                 accountDTO.copy(
                     tokens = accountDTO.tokens?.map { token ->
                         token.copy(accountId = accountDTO.id)
-                    }
+                    },
                 )
-            }
+            },
         )
     }
 
