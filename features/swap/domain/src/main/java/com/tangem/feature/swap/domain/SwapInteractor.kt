@@ -61,7 +61,8 @@ interface SwapInteractor {
      * @param currencyToSend [Currency]
      * @param currencyToGet [Currency]
      * @param amountToSwap amount to swap
-     * @param fee for tx
+     * @param fee for tx (can be null only for tangem pay withdrawal)
+
      * @return [SwapTransactionState]
      */
     @Suppress("LongParameterList")
@@ -75,8 +76,9 @@ interface SwapInteractor {
         toAccount: Account.CryptoPortfolio?,
         amountToSwap: String,
         includeFeeInAmount: IncludeFeeInAmount,
-        fee: TxFee,
+        fee: TxFee?,
         expressOperationType: ExpressOperationType,
+        isTangemPayWithdrawal: Boolean,
     ): SwapTransactionState
 
     // suspend fun updateQuotesStateWithSelectedFee(
