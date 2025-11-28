@@ -31,7 +31,7 @@ internal class DefaultTangemPayAuthDataSource @Inject constructor(
     override suspend fun getWithdrawalSignature(cardId: String, hash: String): Either<Throwable, String> {
         return when (val signResult = tangemSdkManager.getWithdrawalSignature(cardId, hash)) {
             is CompletionResult.Failure<*> -> Either.Left(
-                IllegalStateException("TangemPay sigh hash failed: ${signResult.error}"),
+                IllegalStateException("TangemPay sign hash failed: ${signResult.error}"),
             )
             is CompletionResult.Success<String> -> Either.Right(signResult.data)
         }

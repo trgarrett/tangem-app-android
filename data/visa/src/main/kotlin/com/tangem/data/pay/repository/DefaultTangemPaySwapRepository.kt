@@ -39,6 +39,7 @@ internal class DefaultTangemPaySwapRepository @Inject constructor(
         cryptoCurrencyId: CryptoCurrency.RawID,
     ): Either<UniversalError, Unit> {
         val amountInCents = getAmountInCents(cryptoAmount, cryptoCurrencyId)
+        if (amountInCents.isNullOrEmpty()) return Either.Left(VisaApiError.WithdrawalDataError)
         return requestHelper.makeSafeRequest(userWalletId) { authHeader ->
             val request = WithdrawDataRequest(amountInCents = amountInCents, recipientAddress = receiverAddress)
             tangemPayApi.getWithdrawData(authHeader = authHeader, body = request)
@@ -64,8 +65,9 @@ internal class DefaultTangemPaySwapRepository @Inject constructor(
         }
     }
 
-    private suspend fun getAmountInCents(cryptoAmount: BigDecimal, cryptoCurrencyId: CryptoCurrency.RawID): String {
-        val amountInDollars = cryptoAmount.multiply(getFiatRate(cryptoCurrencyId))
+    private suspend fun getAmountInCents(cryptoAmount: BigDecimal, cryptoCurrencyId: CryptoCurrency.RawID): String? {
+        val fiatRate = getFiatRate(cryptoCurrencyId) ?: return null
+        val amountInDollars = cryptoAmount.multiply(fiatRate)
         val defaultFractionDigits = Currency.getInstance(Locale.US).defaultFractionDigits
         return amountInDollars
             .setScale(defaultFractionDigits, RoundingMode.HALF_UP)
