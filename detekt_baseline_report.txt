@@ -1,7 +1,7 @@
 ==========================================
 Detekt Baseline Updater & Issue Counter
 ==========================================
-Date: 2025-11-28 11:29:54
+Date: 2025-11-28 11:36:19
 
 Step 1: Running detekt to check for new issues...
 
@@ -17,13 +17,13 @@ Counting issues in baseline files...
 ==========================================
 
 Summary:
-  Total Issues: 1476
+  Total Issues: 1473
   Modules with Issues: 65
   Average Issues per Module: 22
 
 Progress:
-  Fixed: 326 out of 1802 (18%)
-  Remaining: 1476
+  Fixed: 329 out of 1802 (18%)
+  Remaining: 1473
 
 ==========================================
 All Modules with Issues (sorted by count)
@@ -31,7 +31,7 @@ All Modules with Issues (sorted by count)
 
 Module                                                           Issues
 ────────────────────────────────────────────────────────────────
-features/wallet/impl                                                152
+features/wallet/impl                                                151
 features/markets/impl                                               148
 features/onboarding-v2/impl                                         130
 features/swap/impl                                                   69
@@ -50,9 +50,9 @@ domain/tokens                                                        28
 core/ui                                                              27
 features/swap/domain                                                 26
 common/ui                                                            26
-data/visa                                                            23
-features/tangempay/details/impl                                      22
+data/visa                                                            22
 features/yield-supply/impl                                           21
+features/tangempay/details/impl                                      21
 data/nft                                                             20
 data/wallets                                                         18
 features/swap/data                                                   15

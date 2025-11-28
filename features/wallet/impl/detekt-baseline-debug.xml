@@ -20,7 +20,6 @@
     <ID>BooleanPropertyNaming:WalletManageButton.kt$WalletManageButton$/** Whether to dim content */ abstract val dimContent: Boolean</ID>
     <ID>BooleanPropertyNaming:WalletManageButton.kt$WalletManageButton.Swap$val showBadge: Boolean = false</ID>
     <ID>BooleanPropertyNaming:WalletModel.kt$WalletModel$private var needToRefreshWallet = false</ID>
-    <ID>BooleanPropertyNaming:WalletModel.kt$WalletModel$val initialDataProduced = tangemPayOnboardingRepository.isTangemPayInitialDataProduced()</ID>
     <ID>BooleanPropertyNaming:WalletNameMigrationUseCase.kt$WalletNameMigrationUseCase$private val useNewListRepository: Boolean</ID>
     <ID>BooleanPropertyNaming:WalletScreen.kt$val portfolioContent = state is WalletState.MultiCurrency.Content &amp;&amp; state.tokensListState is WalletTokensListState.ContentState.PortfolioContent</ID>
     <ID>BooleanPropertyNaming:WalletScreen.kt$val showMarketsHint by remember { derivedStateOf { // Show hint only when there are items in the list // and when there a no items to scroll listState.layoutInfo.totalItemsCount &gt; 0 &amp;&amp; !listState.canScrollBackward &amp;&amp; !listState.canScrollForward || listState.canScrollBackward &amp;&amp; !listState.canScrollForward } }</ID>
